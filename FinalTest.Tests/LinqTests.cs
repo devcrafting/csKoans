@@ -61,7 +61,7 @@ namespace FinalTest.Tests
         //public void RécupérerUneChaîneContenantLesNombresImpairsAuFormatTextuel()
         //{
         //    var nombres = new Nombres(keyValuePairs);
-        //    var texteNombresImpairs = nombres.TexteNombresImpairs; // retourne une string en utilisant Linq (i.e sans utiliser de boucles) -> Aggregate
+        //    var texteNombresImpairs = nombres.TexteNombresImpairs; // retourne une string en utilisant Linq (i.e sans utiliser de boucles) -> Aggregate + OrderBy
 
         //    Check.That(texteNombresImpairs).IsEqualTo("un, trois, cinq, sept, neuf");
         //}
