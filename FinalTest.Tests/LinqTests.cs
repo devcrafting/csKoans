@@ -7,36 +7,36 @@ namespace FinalTest.Tests
     [TestFixture]
     public class LinqTests
     {
-        private ienumerable<keyvaluepair<string, int>> keyvaluepairs;
-        private ienumerable<keyvaluepair<string, int>> otherkeyvaluepairs;
+        private IEnumerable<KeyValuePair<string, int>> keyValuePairs;
+        private IEnumerable<KeyValuePair<string, int>> otherKeyValuePairs;
 
-        [setup]
-        public void setup()
+        [SetUp]
+        public void Setup()
         {
-           keyvaluepairs = new list<keyvaluepair<string, int>>()
-           {
-               new keyvaluepair<string, int>("un", 1),
-               new keyvaluepair<string, int>("sept", 7),
-               new keyvaluepair<string, int>("trois", 3),
-               new keyvaluepair<string, int>("quatre", 4),
-               new keyvaluepair<string, int>("deux", 2),
-               new keyvaluepair<string, int>("cinq", 5),
-               new keyvaluepair<string, int>("huit", 8),
-               new keyvaluepair<string, int>("six", 6),
-               new keyvaluepair<string, int>("neuf", 9)
-           };
-           otherkeyvaluepairs = new list<keyvaluepair<string, int>>()
-           {
-               new keyvaluepair<string, int>("dix", 10),
-               new keyvaluepair<string, int>("dix-sept", 17),
-               new keyvaluepair<string, int>("soixante-quatorze", 74),
-               new keyvaluepair<string, int>("vingt-huit", 28),
-               new keyvaluepair<string, int>("cinquante et un", 51),
-               new keyvaluepair<string, int>("quatre-vingt-neuf", 89),
-               new keyvaluepair<string, int>("soixante-six", 66),
-               new keyvaluepair<string, int>("vingt-trois", 23),
-               new keyvaluepair<string, int>("quatre-vingt-douze", 92)
-           };
+            keyValuePairs = new List<KeyValuePair<string, int>>()
+            {
+                new KeyValuePair<string, int>("un", 1),
+                new KeyValuePair<string, int>("sept", 7),
+                new KeyValuePair<string, int>("trois", 3),
+                new KeyValuePair<string, int>("quatre", 4),
+                new KeyValuePair<string, int>("deux", 2),
+                new KeyValuePair<string, int>("cinq", 5),
+                new KeyValuePair<string, int>("huit", 8),
+                new KeyValuePair<string, int>("six", 6),
+                new KeyValuePair<string, int>("neuf", 9)
+            };
+            otherKeyValuePairs = new List<KeyValuePair<string, int>>()
+            {
+                new KeyValuePair<string, int>("dix", 10),
+                new KeyValuePair<string, int>("dix-sept", 17),
+                new KeyValuePair<string, int>("soixante-quatorze", 74),
+                new KeyValuePair<string, int>("vingt-huit", 28),
+                new KeyValuePair<string, int>("cinquante et un", 51),
+                new KeyValuePair<string, int>("quatre-vingt-neuf", 89),
+                new KeyValuePair<string, int>("soixante-six", 66),
+                new KeyValuePair<string, int>("vingt-trois", 23),
+                new KeyValuePair<string, int>("quatre-vingt-douze", 92)
+            };
         }
 
         //[Test]
