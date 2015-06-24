@@ -7,45 +7,45 @@ namespace FinalTest.Tests
     [TestFixture]
     public class LinqTests
     {
-        //private IEnumerable<KeyValuePair<string, int>> keyValuePairs;
-        //private IEnumerable<KeyValuePair<string, int>> otherKeyValuePairs;
+        private ienumerable<keyvaluepair<string, int>> keyvaluepairs;
+        private ienumerable<keyvaluepair<string, int>> otherkeyvaluepairs;
 
-        //[SetUp]
-        //public void Setup()
-        //{
-        //    keyValuePairs = new List<KeyValuePair<string, int>>()
-        //    {
-        //        new KeyValuePair<string, int>("un", 1),
-        //        new KeyValuePair<string, int>("sept", 7),
-        //        new KeyValuePair<string, int>("trois", 3),
-        //        new KeyValuePair<string, int>("quatre", 4),
-        //        new KeyValuePair<string, int>("deux", 2),
-        //        new KeyValuePair<string, int>("cinq", 5),
-        //        new KeyValuePair<string, int>("huit", 8),
-        //        new KeyValuePair<string, int>("six", 6),
-        //        new KeyValuePair<string, int>("neuf", 9)
-        //    };
-        //    otherKeyValuePairs = new List<KeyValuePair<string, int>>()
-        //    {
-        //        new KeyValuePair<string, int>("dix", 10),
-        //        new KeyValuePair<string, int>("dix-sept", 17),
-        //        new KeyValuePair<string, int>("soixante-quatorze", 74),
-        //        new KeyValuePair<string, int>("vingt-huit", 28),
-        //        new KeyValuePair<string, int>("cinquante et un", 51),
-        //        new KeyValuePair<string, int>("quatre-vingt-neuf", 89),
-        //        new KeyValuePair<string, int>("soixante-six", 66),
-        //        new KeyValuePair<string, int>("vingt-trois", 23),
-        //        new KeyValuePair<string, int>("quatre-vingt-douze", 92)
-        //    };
-        //}
+        [setup]
+        public void setup()
+        {
+           keyvaluepairs = new list<keyvaluepair<string, int>>()
+           {
+               new keyvaluepair<string, int>("un", 1),
+               new keyvaluepair<string, int>("sept", 7),
+               new keyvaluepair<string, int>("trois", 3),
+               new keyvaluepair<string, int>("quatre", 4),
+               new keyvaluepair<string, int>("deux", 2),
+               new keyvaluepair<string, int>("cinq", 5),
+               new keyvaluepair<string, int>("huit", 8),
+               new keyvaluepair<string, int>("six", 6),
+               new keyvaluepair<string, int>("neuf", 9)
+           };
+           otherkeyvaluepairs = new list<keyvaluepair<string, int>>()
+           {
+               new keyvaluepair<string, int>("dix", 10),
+               new keyvaluepair<string, int>("dix-sept", 17),
+               new keyvaluepair<string, int>("soixante-quatorze", 74),
+               new keyvaluepair<string, int>("vingt-huit", 28),
+               new keyvaluepair<string, int>("cinquante et un", 51),
+               new keyvaluepair<string, int>("quatre-vingt-neuf", 89),
+               new keyvaluepair<string, int>("soixante-six", 66),
+               new keyvaluepair<string, int>("vingt-trois", 23),
+               new keyvaluepair<string, int>("quatre-vingt-douze", 92)
+           };
+        }
 
         //[Test]
         //public void RécupérerLesNombresPairs()
         //{
         //    var nombres = new Nombres(keyValuePairs);
-        //    var nombresPairs = nombres.NombresPairs; // retourne un IEnumerable<int> en utilisant Linq (i.e sans utiliser de boucles) -> Where + Select
+        //    var nombresPairs = nombres.NombresPairs; // getter seulement qui retourne un IEnumerable<int> en utilisant Linq (i.e sans utiliser de boucles) -> Where + Select
 
-        //    Check.That(nombresPairs).ContainsExactly(2, 4, 6, 8);
+        //    Check.That(nombresPairs).ContainsExactly(4, 2, 8, 6);
         //}
 
         //[Test]
