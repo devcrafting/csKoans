@@ -72,7 +72,7 @@ namespace FinalTest.Tests
         //    var nombres = new Nombres(otherKeyValuePairs);
         //    var texteNombresImpairs = nombres.TexteNombresImpairs;  // meme propriété
 
-        //    Check.That(texteNombresImpairs).IsEqualTo("dix-sept, cinquante et un, quatre-vingt-neuf, vingt-trois");
+        //    Check.That(texteNombresImpairs).IsEqualTo("dix-sept, vingt-trois, cinquante et un, quatre-vingt-neuf");
         //}
 
         //[Test]
