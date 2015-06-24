@@ -100,7 +100,7 @@ namespace FinalTest.Tests
         //    var nombres = new Nombres(keyValuePairs);
         //    var quatreNombresSupérieursSuivant3 = nombres.QuatreNombresSupérieursSuivant3; // retourne un IEnumerable<int> en utilisant Linq (i.e sans utiliser de boucles) -> OrderBy + Skip + Take
 
-        //    Check.That(quatreNombresSupérieursSuivant3).ContainsExactly(10, 17, 23, 28);
+        //    Check.That(quatreNombresSupérieursSuivant3).ContainsExactly(4, 5, 6, 7);
         //}
 
         //[Test]
