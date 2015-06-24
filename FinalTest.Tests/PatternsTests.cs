@@ -32,7 +32,7 @@ namespace FinalTest.Tests
         //[Test]
         //public void EtantDonnéUnCompteBancaireFaireUnRetraitAvecProvisionSuffisanteProduitUnEvenement()
         //{
-        //    var compteBancaire = new CompteBancaire(new IEvénementMétier[] { new CompteCréé(_numéroDeCompte, 0), new DépotRéalisé(new Montant(100), DateTime.Now) }); // Event Sourcing avec une liste d'événements IEnumerable<IEvénementMétier>
+        //    var compteBancaire = new CompteBancaire(new CompteCréé(_numéroDeCompte, 0), new DépotRéalisé(_numéroDeCompte, new Montant(100), DateTime.Now)); // Event Sourcing avec une liste d'événements (params IEvénementMétier>[])
         //    var montantRetrait = new Montant(10);
         //    var dateRetrait = DateTime.Now;
         //    var evenements = compteBancaire.FaireUnRetrait(montantRetrait, dateRetrait); // retourne un IEnumerable<IEvénémentMétier> contenant l'événement RetraitRealisé
@@ -43,7 +43,7 @@ namespace FinalTest.Tests
         //[Test]
         //public void EtantDonnéUnCompteBancaireNonApprovisionnéFaireUnRetraitSansDépasserSonAutorisationDeCreditSuffisanteProduitDeuxEvenements()
         //{
-        //    var compteBancaire = new CompteBancaire(new IEvénementMétier[] { new CompteCréé(_numéroDeCompte, 10), new DépotRéalisé(new Montant(5), DateTime.Now) });
+        //    var compteBancaire = new CompteBancaire(new CompteCréé(_numéroDeCompte, 10), new DépotRéalisé(_numéroDeCompte, new Montant(5), DateTime.Now));
         //    var montantRetrait = new Montant(10);
         //    var dateRetrait = DateTime.Now;
         //    var evenements = compteBancaire.FaireUnRetrait(montantRetrait, dateRetrait); // retourne un IEnumerable<IEvénémentMétier> contenant l'événement RetraitRealisé
@@ -55,7 +55,7 @@ namespace FinalTest.Tests
         //[ExpectedException(typeof(DépotNonAutorisé))]
         //public void EtantDonnéUnCompteBancaireInitialiséViaEventSourcingFaireUnRetraitEnDehorsDeLAutorisationDeCreditLèveUneException()
         //{
-        //    var compteBancaire = new CompteBancaire(new IEvénementMétier[] { new CompteCréé(_numéroDeCompte, 10), new DépotRéalisé(new Montant(5), DateTime.Now) });
+        //    var compteBancaire = new CompteBancaire(new CompteCréé(_numéroDeCompte, 10), new DépotRéalisé(_numéroDeCompte, new Montant(5), DateTime.Now));
         //    var montantRetrait = new Montant(30);
         //    var dateRetrait = DateTime.Now;
         //    compteBancaire.FaireUnRetrait(montantRetrait, dateRetrait);
