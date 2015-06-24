@@ -30,7 +30,7 @@ namespace FinalTest.Tests
         //    var valeur2 = new TypeReference(12);
 
         //    Check.That(valeur1).IsEqualTo(valeur2);
-        //    Check.That(typeof(TypeReference).IsValueType).IsTrue();
+        //    Check.That(typeof(TypeReference).IsValueType).IsFalse();
         //}
 
         //[Test]
