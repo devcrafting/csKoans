@@ -48,7 +48,7 @@ namespace FinalTest.Tests
         //    var dateRetrait = DateTime.Now;
         //    var evenements = compteBancaire.FaireUnRetrait(montantRetrait, dateRetrait); // retourne un IEnumerable<IEvénémentMétier> contenant l'événement RetraitRealisé
 
-        //    Check.That(evenements).ContainsExactly(new RetraitRéalisé(_numéroDeCompte, montantRetrait, dateRetrait), new BalanceNégativeDétectée(_numéroDeCompte, new Montant(5), dateRetrait));
+        //    Check.That(evenements).ContainsExactly<IEvénementMétier>(new RetraitRéalisé(_numéroDeCompte, montantRetrait, dateRetrait), new BalanceNégativeDétectée(_numéroDeCompte, new Montant(5), dateRetrait));
         //}
 
         //[Test]
