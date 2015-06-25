@@ -52,15 +52,15 @@ namespace FinalTest.Tests
         //}
 
         //[Test]
-        //[ExpectedException(typeof(DépotNonAutorisé))]
+        //[ExpectedException(typeof(RetraitNonAutorisé))]
         //public void EtantDonnéUnCompteBancaireInitialiséViaEventSourcingFaireUnRetraitEnDehorsDeLAutorisationDeCreditLèveUneException()
         //{
         //    var compteBancaire = new CompteBancaire(new CompteCréé(_numéroDeCompte, 10), new DépotRéalisé(_numéroDeCompte, new Montant(5), DateTime.Now));
         //    var montantRetrait = new Montant(30);
         //    var dateRetrait = DateTime.Now;
-        //    compteBancaire.FaireUnRetrait(montantRetrait, dateRetrait);
+        //    var evenements = compteBancaire.FaireUnRetrait(montantRetrait, dateRetrait);
 
-        //    Assert.Fail("L'exception attendue devrait avoir été levée");
+        //    Check.That(evenements).IsEmpty();
         //}
 
         //[Test]
