@@ -7,7 +7,7 @@
 Consignes:
 	- A faire individuellement
 	- Aucun code dans le projet Tests (les seules modifications doivent être le fait de décommenter les tests)
-Pour cela, utilisez Resharper (Alt-Enter) pour créer les classes/méthodes, puis déplacez le code en dehors du projet Tests en appuyant sur Shift en même temps que le cliquer-glisser (sinon le fichier est copi� et non d�plac�)
+Pour cela, utilisez Resharper (Alt-Enter) pour créer les classes/méthodes, puis déplacez le code en dehors du projet Tests en appuyant sur Shift en même temps que le cliquer-glisser (sinon le fichier est copié et non déplacé)
 	- Un commit par tests avec message explicite
 	- On peut zapper des tests, les tests des 3 fichiers sont totalement indépendants les uns des autres, au sein d'un même fichier de test, il y a potentiellement un peu de lien entre les tests
 	- A la fin, pousser vore branche de travail et donnez-moi l'URL de votre repo GitHub avec le nom de la branche à récupérer
