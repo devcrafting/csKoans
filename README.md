@@ -1,4 +1,4 @@
-Avant de démarrer:
+﻿Avant de démarrer:
 - Installer Resharper
 - Récupération du repository
 	- Fork sur GitHub
