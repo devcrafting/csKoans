@@ -14,6 +14,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{89D966
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Instructions", "Instructions", "{DC2CA555-B298-4DC9-B674-FF8653C97B98}"
+	ProjectSection(SolutionItems) = preProject
+		BuildAllStudents.bat = BuildAllStudents.bat
+		BuildAllStudents.fsx = BuildAllStudents.fsx
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
