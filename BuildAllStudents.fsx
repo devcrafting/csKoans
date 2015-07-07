@@ -60,8 +60,11 @@ type Note = {
     Name: string;
     NbTestsSucceeded: float;
     NbTestsFailures: float;
-    NbTestsErrors: float
+    NbTestsErrors: float;
+    NbSucceededLinq: float
 }
+
+open System.Xml.XPath
 
 Target "DisplayResults" (fun _ ->
     !! (buildDir + "**/TestResults.xml")
@@ -73,10 +76,19 @@ Target "DisplayResults" (fun _ ->
         let total = XPathValue "//test-results/@total" [] xmlDoc
         let failures = XPathValue "//test-results/@failures" [] xmlDoc
         let errors = XPathValue "//test-results/@errors" [] xmlDoc
-        { Name = who; NbTestsSucceeded = float total - float failures - float errors; NbTestsErrors = float errors; NbTestsFailures = float failures }
+        let xpathNav = xmlDoc.CreateNavigator()
+        let succeededLinq = float (xpathNav.Evaluate("count(//test-suite[@name='LinqTests']//test-case[@result='Success']/@result)").ToString())
+        { Name = who; NbTestsSucceeded = float total - float failures - float errors; NbTestsErrors = float errors; NbTestsFailures = float failures; NbSucceededLinq = succeededLinq }
     )
     |> Seq.sortBy (fun note -> note.Name)
-    |> Seq.iter (fun note -> printfn "%s\t%s%f\t%f\t%f" note.Name (if note.Name.Length >= 8 then "" else "\t") ((note.NbTestsSucceeded + 0.5 * note.NbTestsFailures + 0.2 * note.NbTestsErrors)*17.0/20.0) note.NbTestsFailures note.NbTestsErrors)
+    |> Seq.iter (fun note -> 
+                    printfn "%s\t%s%f\t%f\t%f\t%f" 
+                        note.Name 
+                        (if note.Name.Length >= 8 then "" else "\t") 
+                        ((note.NbTestsSucceeded - note.NbSucceededLinq/2.0 + 0.5 * note.NbTestsFailures + 0.2 * note.NbTestsErrors)*17.0/16.0)
+                        note.NbTestsFailures 
+                        note.NbTestsErrors 
+                        note.NbSucceededLinq)
 )
 
 "Clean"
