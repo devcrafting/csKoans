@@ -44,6 +44,7 @@ Target "BuildAndTestAllBranches" (fun _ ->
     printfn "Nombres de repos GitHub : %i" branches.Length
     branches
     |> List.filter (fun x -> not (List.exists (fun (y:string) -> y = x) ["Aurélien/master"; "Laurianne/master"]))
+    |> List.append ["Aurélien"; "Laurianne"]
     |> List.filter (fun x -> not (x.StartsWith("origin")))
     |> List.map (fun branch -> 
         checkoutBranch gitRepositoryDir branch
