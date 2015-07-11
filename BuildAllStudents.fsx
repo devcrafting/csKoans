@@ -45,7 +45,7 @@ let createSonarTarget branch =
                 defaultParams with
                 WorkingDirectory = currentDirectory
                 Program = @"C:\Dev\sonar-runner-2.4\bin\sonar-runner.bat"
-                Args = [ ("-Dsonar.projectKey=IUTLyon1:2015:" + branch, "");
+                Args = [ ("-Dsonar.projectKey=IUTLyon1:2015:" + branch.Replace("é","e"), "");
                     ("-Dsonar.projectName=\"IUTLyon1 2015 - " + branch + "\"", "");
                     ("-Dsonar.projectVersion=v1", "");
                     ("-Dsonar.sources=.", "")]
@@ -67,7 +67,7 @@ Target "BuildAndTestAllBranches" (fun _ ->
         createBuildTarget remote
         createTestTarget remote
         createSonarTarget remote
-        run ("Test_" + remote)
+        run ("Sonar_" + remote)
     )
     |> ignore
 )
