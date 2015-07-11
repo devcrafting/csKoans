@@ -38,6 +38,20 @@ let createTestTarget branch =
                  ToolPath = "c:/Program Files (x86)/NUnit 2.6.4/bin";
                  OutputFile = branchBuildDir branch + "TestResults.xml" })
     ) ("Test_" + branch) ()
+    
+let createSonarTarget branch =
+    TargetTemplateWithDependencies ["Test_" + branch ] (fun _ ->
+        let sonarRunner = { 
+                defaultParams with
+                WorkingDirectory = currentDirectory
+                Program = @"C:\Dev\sonar-runner-2.4\bin\sonar-runner.bat"
+                Args = [ ("-Dsonar.projectKey=IUTLyon1:2015:" + branch, "");
+                    ("-Dsonar.projectName=\"IUTLyon1 2015 - " + branch + "\"", "");
+                    ("-Dsonar.projectVersion=v1", "");
+                    ("-Dsonar.sources=.", "")]
+            }
+        shellExec sonarRunner |> ignore
+    ) ("Sonar_" + branch) ()
 
 Target "BuildAndTestAllBranches" (fun _ ->
     let branches = getRemoteBranches gitRepositoryDir
@@ -52,6 +66,7 @@ Target "BuildAndTestAllBranches" (fun _ ->
         trace (sprintf "STARTING build for : %s" remote)
         createBuildTarget remote
         createTestTarget remote
+        createSonarTarget remote
         run ("Test_" + remote)
     )
     |> ignore
@@ -95,5 +110,13 @@ Target "DisplayResults" (fun _ ->
 "Clean"
     ==> "BuildAndTestAllBranches"
     ==> "DisplayResults"
+
+Target "SonarSolution" (fun _ ->
+    checkoutBranch gitRepositoryDir "solution"
+    createBuildTarget "solution"
+    createTestTarget "solution"
+    createSonarTarget "solution"
+    run "Sonar_solution"
+)
 
 RunTargetOrDefault "DisplayResults"
