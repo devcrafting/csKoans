@@ -48,7 +48,8 @@ let createSonarTarget branch =
                 Args = [ ("-Dsonar.projectKey=IUTLyon1:2015:" + branch.Replace("é","e"), "");
                     ("-Dsonar.projectName=\"IUTLyon1 2015 - " + branch + "\"", "");
                     ("-Dsonar.projectVersion=v1", "");
-                    ("-Dsonar.sources=.", "")]
+                    ("-Dsonar.sources=.", "");
+                    ("-Dsonar.exclusions=**/*Tests.cs", "")]
             }
         shellExec sonarRunner |> ignore
     ) ("Sonar_" + branch) ()
