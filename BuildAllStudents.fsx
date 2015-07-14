@@ -5,6 +5,8 @@
 #r "packages/FAKE/tools/FakeLib.dll"
 open Fake
 open Fake.Git
+open Fake.DotCover
+open System
 
 RestorePackages
 
@@ -28,10 +30,44 @@ let createBuildTarget branch =
         
     ) ("Build_" + branch) ()
 
+let buildParamsAndExecute parameters buildArguments toolPath workingDir =
+    let args = buildArguments parameters
+    trace (toolPath + " " + args)
+    ExecProcess (fun info ->  
+              info.FileName <- toolPath
+              info.WorkingDirectory <- getWorkingDir workingDir
+              info.Arguments <- args) TimeSpan.MaxValue |> ignore
+    
+let DotCoverNoFail (setParams: DotCoverParams -> DotCoverParams) =
+    let parameters = (DotCoverDefaults |> setParams)
+    buildParamsAndExecute parameters buildDotCoverArgs parameters.ToolPath parameters.WorkingDir
+
+let DotCoverNUnitNoFail (setDotCoverParams: DotCoverParams -> DotCoverParams) (setNUnitParams: NUnitParams -> NUnitParams) (assemblies: string seq) = 
+    let assemblies = assemblies |> Seq.toArray
+    let details =  assemblies |> separated ", "
+    traceStartTask "DotCoverNUnit" details
+
+    let parameters = NUnitDefaults |> setNUnitParams
+    let args = buildNUnitdArgs parameters assemblies
+    
+    DotCoverNoFail (fun p ->
+                  {p with
+                     TargetExecutable = parameters.ToolPath @@ parameters.ToolName
+                     TargetArguments = args
+                  } |> setDotCoverParams)
+
+    traceEndTask "DotCoverNUnit" details
+
 let createTestTarget branch =
     TargetTemplateWithDependencies ["Build_" + branch ] (fun _ ->
         !! (branchBuildDir branch + "*.Tests.dll")
-          |> NUnit (fun p ->
+          |> DotCoverNUnitNoFail 
+            (fun p -> 
+                { p with 
+                    ToolPath = @"C:\Users\Administrator\AppData\Local\JetBrains\Installations\dotCover02\dotCover.exe"
+                    Output = branchBuildDir branch + "dotCover.dcvr"
+                    Filters = "-:module=*;type=*Tests" })
+            (fun p ->
               {p with
                  ErrorLevel = TestRunnerErrorLevel.DontFailBuild
                  DisableShadowCopy = true;
@@ -41,6 +77,11 @@ let createTestTarget branch =
     
 let createSonarTarget branch =
     TargetTemplateWithDependencies ["Test_" + branch ] (fun _ ->
+        DotCoverReport (fun p -> 
+            { p with 
+                Source = branchBuildDir branch + "dotCover.dcvr"                
+                ToolPath = @"C:\Users\Administrator\AppData\Local\JetBrains\Installations\dotCover02\dotCover.exe"
+                ReportType = DotCoverReportType.Html; Output = branchBuildDir branch + "dotCover.html" })
         let sonarRunner = { 
                 defaultParams with
                 WorkingDirectory = currentDirectory
@@ -49,7 +90,9 @@ let createSonarTarget branch =
                     ("-Dsonar.projectName=\"IUTLyon1 2015 - " + branch + "\"", "");
                     ("-Dsonar.projectVersion=v1", "");
                     ("-Dsonar.sources=.", "");
-                    ("-Dsonar.exclusions=**/*Tests.cs", "")]
+                    ("-Dsonar.exclusions=**/*Tests.cs", "");
+                    ("-Dsonar.cs.dotcover.reportsPaths=**/" + branch + "/dotCover.html", "");
+                    ("-Dsonar.cs.nunit.reportsPaths=**/" + branch + "/TestResults.xml", "")]
             }
         shellExec sonarRunner |> ignore
     ) ("Sonar_" + branch) ()
